@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pages of My Love - For June</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #f7f5eb 0%, #d0ead7 100%);
+      color: #355e3b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      text-align: center;
+      position: relative;
+      transition: background 1s ease;
+    }
+
+    .flower-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/cream-pixels.png'), 
+                       radial-gradient(circle at 20% 50%, rgba(255,255,255,0.8) 0%, transparent 20%),
+                       radial-gradient(circle at 80% 30%, rgba(255,255,255,0.6) 0%, transparent 25%);
+      background-size: cover, 200% 200%, 200% 200%;
+      background-position: center;
+      opacity: 0.15;
+      z-index: -1;
+      animation: gradientShift 15s ease infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: center, 0% 0%, 100% 100%; }
+      100% { background-position: center, 100% 100%, 0% 0%; }
+    }
+
+    .page-container {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 900px;
+      padding: 20px;
+    }
+
+    .page {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1),
+                  inset 0 0 15px rgba(255, 255, 255, 0.5);
+      transform-style: preserve-3d;
+      transition: transform 0.8s, box-shadow 0.8s;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .page::before {
+      content: '';
+      position: absolute;
+      top: -10px; right: -10px; bottom: -10px; left: -10px;
+      background: linear-gradient(45deg, 
+                  rgba(168, 213, 186, 0.3) 0%, 
+                  rgba(255, 255, 255, 0.1) 50%, 
+                  rgba(190, 231, 204, 0.3) 100%);
+      z-index: -1;
+      border-radius: 30px;
+      animation: shine 3s infinite alternate;
+    }
+
+    @keyframes shine {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .page.active {
+      display: flex;
+      animation: pageAppear 1s both;
+    }
+
+    @keyframes pageAppear {
+      0% { opacity: 0; transform: translateY(30px) rotateY(15deg); }
+      100% { opacity: 1; transform: translateY(0) rotateY(0); }
+    }
+
+    .page:hover {
+      transform: translateY(-5px) rotateY(2deg);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15),
+                  inset 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.8em;
+      color: #3c4f32;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a8d5ba, transparent);
+    }
+
+    p {
+      font-size: 1.3em;
+      line-height: 1.9;
+      margin-bottom: 20px;
+      text-align: center;
+      max-width: 700px;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1em;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(145deg, #a8d5ba, #bee7cc);
+      color: #2e4637;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1),
+                  inset 0 2px 4px rgba(255,255,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: 0.5s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(0,0,0,0.15),
+                  inset 0 2px 4px rgba(255,255,255,0.4);
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .special-btn {
+      background: linear-gradient(145deg, #f8c8dc, #ffb6c1);
+      color: #5e2d38;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .petal {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: rgba(255, 200, 221, 0.7);
+      border-radius: 150% 0 150% 0;
+      animation: fall linear infinite;
+      z-index: -1;
+      filter: drop-shadow(0 0 3px rgba(255, 180, 200, 0.7));
+    }
+
+    @keyframes fall {
+      0% { 
+        transform: translateY(-50px) rotate(0deg) scale(0.8); 
+        opacity: 0.7; 
+      }
+      100% { 
+        transform: translateY(110vh) rotate(360deg) scale(1.2); 
+        opacity: 0; 
+      }
+    }
+
+    .photo {
+      width: 280px;
+      height: auto;
+      border-radius: 15px;
+      margin: 25px 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border: 5px solid #c9e4c5;
+      transition: all 0.5s ease;
+      object-fit: cover;
+      aspect-ratio: 1/1;
+    }
+
+    .photo:hover {
+      transform: scale(1.03) rotate(1deg);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      border-color: #a8d5ba;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.2em;
+      color: #557c55;
+      margin: 25px 0 10px;
+      padding: 15px 25px;
+      background: rgba(200, 230, 210, 0.3);
+      border-radius: 15px;
+      position: relative;
+      max-width: 600px;
+    }
+
+    .quote::before, .quote::after {
+      content: '"';
+      font-size: 1.5em;
+      color: #a8d5ba;
+      position: absolute;
+    }
+
+    .quote::before {
+      top: 5px;
+      left: 5px;
+    }
+
+    .quote::after {
+      bottom: 5px;
+      right: 5px;
+    }
+
+    .heart {
+      position: absolute;
+      pointer-events: none;
+      animation: float 4s ease-in-out infinite;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100px) rotate(20deg); opacity: 0; }
+    }
+
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.3s;
+    }
+
+    .music-control:hover {
+      transform: scale(1.1);
+      background: rgba(255,255,255,0.9);
+    }
+
+    .music-control i {
+      font-size: 24px;
+      color: #557c55;
+    }
+
+    .progress-container {
+      width: 100%;
+      max-width: 600px;
+      height: 6px;
+      background: rgba(200, 230, 210, 0.5);
+      border-radius: 3px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #a8d5ba, #557c55);
+      width: 0%;
+      transition: width 0.3s;
+      border-radius: 3px;
+    }
+
+    .page-indicator {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .indicator-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #c9e4c5;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .indicator-dot.active {
+      background: #557c55;
+      transform: scale(1.3);
+    }
+
+    .hug-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 240, 245, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+
+    .hug-animation.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hug-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3em;
+      color: #d35d6e;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .hearts-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    .big-heart {
+      font-size: 100px;
+      color: #ff6b8b;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .close-hug {
+      margin-top: 40px;
+      padding: 12px 30px;
+      background: linear-gradient(145deg, #ff6b8b, #d35d6e);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(211, 93, 110, 0.3);
+    }
+
+    .close-hug:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(211, 93, 110, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding: 30px 20px;
+        margin: 0 15px;
+      }
+      
+      h1 {
+        font-size: 2.8em;
+      }
+      
+      p {
+        font-size: 1.1em;
+      }
+      
+      .photo {
+        width: 220px;
+      }
+      
+      .btn-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div class="flower-bg"></div>
+
+<audio id="bgMusic" loop>
+  <source src="https://audio.jukehost.co.uk/9muw7k5ms8FDjcBjGVE0a4eM1Toyyv2k" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+<div class="music-control" id="musicToggle">
+  <i class="fas fa-music"></i>
+</div>
+
+<div class="page-container">
+  <div class="page active">
+    <h1>To My Dearest June,</h1>
+    <img class="photo" src="https://s14.gifyu.com/images/bHXSH.png" alt="June 1" />
+    <p>This isn't just a letter.<br>It's a quiet garden where my thoughts bloom for you, one petal at a time.</p>
+    <div class="quote">"Let your heart blossom for someone is already watering it."</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress1"></div>
+    </div>
+    <div class="btn-container">
+      <button onclick="nextPage()">Next <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="page-indicator">
+      <div class="indicator-dot active" onclick="goToPage(0)"></div>
+      <div class="indicator-dot" onclick="goToPage(1)"></div>
+      <div class="indicator-dot" onclick="goToPage(2)"></div>
+      <div class="indicator-dot" onclick="goToPage(3)"></div>
+      <div class="indicator-dot" onclick="goToPage(4)"></div>
+    </div>
+  </div>
+
+  <div class="page">
+    <h1>Your Fire, My Sunrise</h1>
+    <img class="photo" src="https://s14.gifyu.com/images/bHXST.png" alt="June 2" />
+    <p>I've always admired people with fire in their soul but you, June, you're an entire sunrise.</p>
+    <p>The way you carry yourself through the toughest days, the way your mind dances when you speak about your dreams it leaves me in awe, every single time.</p>
+    <p>You don't just work hard you pour your whole being into everything you believe in. That kind of passion? It's rare. It's beautiful. It's you.</p>
+    <div class="quote">"She believed she could, so she did."</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress2"></div>
+    </div>
+    <div class="btn-container">
+      <button onclick="prevPage()"><i class="fas fa-arrow-left"></i> Previous</button>
+      <button onclick="nextPage()">Next <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="page-indicator">
+      <div class="indicator-dot" onclick="goToPage(0)"></div>
+      <div class="indicator-dot active" onclick="goToPage(1)"></div>
+      <div class="indicator-dot" onclick="goToPage(2)"></div>
+      <div class="indicator-dot" onclick="goToPage(3)"></div>
+      <div class="indicator-dot" onclick="goToPage(4)"></div>
+    </div>
+  </div>
+
+  <div class="page">
+    <h1>For Your Sempro</h1>
+    <p>I know your seminar proposal is coming up, and I can only imagine the pressure on your shoulders.</p>
+    <p>But sayang, I want you to remember this:<br>You are so capable. So brilliant. So powerful.</p>
+    <p>You've done the work. You've lived the process. Trust in that. Trust in <em>you</em>.</p>
+    <p>And if doubt ever whispers, let my voice be louder:<br><strong>"You've got this, June."</strong></p>
+    <div class="quote">"Growth is silent, but powerful."</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress3"></div>
+    </div>
+    <div class="btn-container">
+      <button onclick="prevPage()"><i class="fas fa-arrow-left"></i> Previous</button>
+      <button onclick="nextPage()">Next <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="page-indicator">
+      <div class="indicator-dot" onclick="goToPage(0)"></div>
+      <div class="indicator-dot" onclick="goToPage(1)"></div>
+      <div class="indicator-dot active" onclick="goToPage(2)"></div>
+      <div class="indicator-dot" onclick="goToPage(3)"></div>
+      <div class="indicator-dot" onclick="goToPage(4)"></div>
+    </div>
+  </div>
+
+  <div class="page">
+    <h1>Forever Yours</h1>
+    <p>Thank you for being someone who inspires me not just to love you, but to become better for you.</p>
+    <p>I'm always proud of you. Not just for what you do, but for who you are.</p>
+    <p>With all my heart,<br><strong>Ethan ♥</strong></p>
+    <div class="quote">"Love doesn't need to be loud to be felt deeply."</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress4"></div>
+    </div>
+    <div class="btn-container">
+      <button onclick="prevPage()"><i class="fas fa-arrow-left"></i> Previous</button>
+      <button class="special-btn" onclick="startHug()">Virtual Hug <i class="fas fa-heart"></i></button>
+    </div>
+    <div class="page-indicator">
+      <div class="indicator-dot" onclick="goToPage(0)"></div>
+      <div class="indicator-dot" onclick="goToPage(1)"></div>
+      <div class="indicator-dot" onclick="goToPage(2)"></div>
+      <div class="indicator-dot active" onclick="goToPage(3)"></div>
+      <div class="indicator-dot" onclick="goToPage(4)"></div>
+    </div>
+  </div>
+
+  <div class="page">
+    <h1>Come Here, You</h1>
+    <p>(virtual hug initiated 🤗💗)</p>
+    <p>Replay this letter whenever you forget how loved you are.</p>
+    <div class="quote">"You are my quiet place in a noisy world."</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress5"></div>
+    </div>
+    <div class="btn-container">
+      <button onclick="prevPage()"><i class="fas fa-arrow-left"></i> Previous</button>
+      <button onclick="location.reload()">Read Again <i class="fas fa-redo"></i></button>
+    </div>
+    <div class="page-indicator">
+      <div class="indicator-dot" onclick="goToPage(0)"></div>
+      <div class="indicator-dot" onclick="goToPage(1)"></div>
+      <div class="indicator-dot" onclick="goToPage(2)"></div>
+      <div class="indicator-dot" onclick="goToPage(3)"></div>
+      <div class="indicator-dot active" onclick="goToPage(4)"></div>
+    </div>
+  </div>
+</div>
+
+<div class="hug-animation" id="hugAnimation">
+  <div class="hug-text">Sending you the warmest hug...</div>
+  <div class="hearts-container">
+    <div class="big-heart"><i class="fas fa-heart"></i></div>
+  </div>
+  <button class="close-hug" onclick="closeHug()">Feel the Love <i class="fas fa-heart"></i></button>
+</div>
+
+<script>
+  let currentPage = 0;
+  const pages = document.querySelectorAll('.page');
+  const music = document.getElementById('bgMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  const hugAnimation = document.getElementById('hugAnimation');
+  let isMusicPlaying = false;
+  let progressInterval;
+  
+  // Try to play music automatically (may be blocked by browser)
+  window.addEventListener('click', () => {
+    if (!isMusicPlaying) {
+      music.play().then(() => {
+        isMusicPlaying = true;
+        musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+      }).catch(error => {
+        console.log("Auto-play was prevented:", error);
+      });
+    }
+  }, { once: true });
+
+  // Music toggle control
+  musicToggle.addEventListener('click', () => {
+    if (isMusicPlaying) {
+      music.pause();
+      musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+    } else {
+      music.play();
+      musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+    }
+    isMusicPlaying = !isMusicPlaying;
+  });
+
+  function updatePageIndicator() {
+    const indicators = document.querySelectorAll('.indicator-dot');
+    indicators.forEach((dot, index) => {
+      if (index === currentPage) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  function startProgressBar() {
+    clearInterval(progressInterval);
+    const progressBar = document.getElementById(`progress${currentPage + 1}`);
+    progressBar.style.width = '0%';
+    
+    let width = 0;
+    progressInterval = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(progressInterval);
+      } else {
+        width += 0.5;
+        progressBar.style.width = width + '%';
+      }
+    }, 100);
+  }
+
+  function nextPage() {
+    pages[currentPage].classList.remove('active');
+    currentPage = (currentPage + 1) % pages.length;
+    pages[currentPage].classList.add('active');
+    updatePageIndicator();
+    startProgressBar();
+  }
+
+  function prevPage() {
+    pages[currentPage].classList.remove('active');
+    currentPage = (currentPage - 1 + pages.length) % pages.length;
+    pages[currentPage].classList.add('active');
+    updatePageIndicator();
+    startProgressBar();
+  }
+
+  function goToPage(pageIndex) {
+    pages[currentPage].classList.remove('active');
+    currentPage = pageIndex;
+    pages[currentPage].classList.add('active');
+    updatePageIndicator();
+    startProgressBar();
+  }
+
+  function createPetal() {
+    const petal = document.createElement('div');
+    petal.classList.add('petal');
+    petal.style.left = Math.random() * window.innerWidth + 'px';
+    petal.style.animationDuration = (3 + Math.random() * 5) + 's';
+    petal.style.opacity = Math.random() * 0.7 + 0.3;
+    petal.style.transform = `rotate(${Math.random() * 360}deg) scale(${Math.random() * 0.5 + 0.5})`;
+    document.body.appendChild(petal);
+    setTimeout(() => petal.remove(), 8000);
+  }
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '<i class="fas fa-heart"></i>';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.top = window.innerHeight + 'px';
+    heart.style.color = `hsl(${Math.random() * 60 + 330}, 70%, 60%)`;
+    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
+
+  function startHug() {
+    hugAnimation.classList.add('active');
+    
+    // Create floating hearts during hug
+    const heartInterval = setInterval(createHeart, 300);
+    
+    // Stop hearts when hug closes
+    document.querySelector('.close-hug').addEventListener('click', () => {
+      clearInterval(heartInterval);
+    }, { once: true });
+  }
+
+  function closeHug() {
+    hugAnimation.classList.remove('active');
+    nextPage();
+  }
+
+  // Initialize
+  updatePageIndicator();
+  startProgressBar();
+  setInterval(createPetal, 300);
+  
+  // Add click effect
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'BUTTON' && e.target.className !== 'indicator-dot') {
+      createHeart();
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '<i class="fas fa-heart"></i>';
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      heart.style.color = `hsl(${Math.random() * 60 + 330}, 70%, 60%)`;
+      heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+  });
+</script>
+
+</body>
+</html>
